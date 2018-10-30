@@ -13,8 +13,10 @@ import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.Produces;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PUT;
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import pojos.Pasien;
 
@@ -40,7 +42,7 @@ public class PasienResource {
      * Retrieves representation of an instance of service.PasienResource
      * @return an instance of java.lang.String
      */
-    @GET
+    @GET   
     @Produces(javax.ws.rs.core.MediaType.APPLICATION_JSON)
     public Response getJson() {
         //TODO return proper representation object
@@ -58,8 +60,27 @@ public class PasienResource {
      * PUT method for updating or creating an instance of PasienResource
      * @param content representation for the resource
      */
-    @PUT
-    @Consumes(javax.ws.rs.core.MediaType.APPLICATION_JSON)
-    public void putJson(String content) {
+//    @PUT
+//    @Consumes(javax.ws.rs.core.MediaType.APPLICATION_JSON)
+//    public void putJson(String content) {
+//    }
+    @POST
+    @Path("addPasien")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response addNewPasien(String data){
+        Gson gson = new Gson();
+        Pasien pasien = gson.fromJson(data, Pasien.class);            
+        PasienHelper helper = new PasienHelper();
+        helper.addNewPasien(
+                pasien.getNoRm(), 
+                pasien.getNama(), 
+                pasien.getAlamat(), 
+                pasien.getNik(), 
+                pasien.getTanggalLahir(), 
+                pasien.getKelamin());
+        return Response
+                .status(200)
+                .entity(pasien)
+                .build();
     }
 }

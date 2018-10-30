@@ -23,7 +23,7 @@ public class testPasienAdd {
         try {
             SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
             String noRm="354545";
-            String nama="nama";
+            String nama="Bram";
             String alamat="Disini";
             String nik="165314078";
             String kelamin="laki laki";
