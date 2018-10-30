@@ -5,9 +5,11 @@
  */
 package helper;
 
+import java.util.Date;
 import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 import pojos.Pasien;
 import util.RskuHibernateUtil;
 
@@ -27,5 +29,13 @@ public class PasienHelper {
         result = q.list();
         session.close();
         return result;
+    }
+    public void addNewPasien(String noRm, String nama, String alamat, String nik, Date tanggalLahir, String kelamin){
+        Session session = RskuHibernateUtil.getSessionFactory().openSession();
+        Transaction transaction = session.beginTransaction();
+        Pasien pasien = new Pasien(noRm,nama,alamat,nik,tanggalLahir,kelamin);
+        session.save(pasien);
+        transaction.commit();
+        session.close();
     }
 }
