@@ -9,7 +9,7 @@ import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import pojos.Klinik;
-import util.HibernateUtil;
+import util.RskuHibernateUtil;
 
 /**
  *
@@ -21,7 +21,7 @@ public class KlinikHelper {
     }
     public List<Klinik> getAllKlinik(){
         List<Klinik> result = null;
-        Session session = HibernateUtil.getSessionFactory().openSession();
+        Session session = RskuHibernateUtil.getSessionFactory().openSession();
         String query = "from Klinik k";
         Query q = session.createQuery(query);
         result = q.list();

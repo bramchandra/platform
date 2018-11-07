@@ -8,21 +8,21 @@ package helper;
 import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
-import pojos.Klinik;
-import util.HibernateUtil;
+import pojos.Dokter;
+import util.RskuHibernateUtil;
 
 /**
  *
  * @author danielbram
  */
-public class KlinikHelper {
-    public  KlinikHelper(){
+public class DokterHelper {
+    public DokterHelper(){
         
     }
-    public List<Klinik> getAllKlinik(){
-        List<Klinik> result = null;
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        String query = "from Klinik k";
+    public List<Dokter> getAllPasien(){
+        List<Dokter> result = null;
+        Session session = RskuHibernateUtil.getSessionFactory().openSession();
+        String query = "from Dokter d";
         Query q = session.createQuery(query);
         result = q.list();
         session.close();

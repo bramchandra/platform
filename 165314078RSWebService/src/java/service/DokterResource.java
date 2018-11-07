@@ -48,7 +48,7 @@ public class DokterResource {
     public Response getJsonKlinik() {
         //TODO return proper representation object
         KlinikHelper test = new KlinikHelper();
-        List<Klinik> list = test.getAllPasien();
+        List<Klinik> list = test.getAllKlinik();
         Gson gson = new Gson();
         String json = gson.toJson(list);
         return Response

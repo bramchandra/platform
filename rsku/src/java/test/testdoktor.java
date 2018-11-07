@@ -6,18 +6,18 @@
 package test;
 
 import com.google.gson.Gson;
-import helper.KlinikHelper;
+import helper.DokterHelper;
 import java.util.List;
-import pojos.Klinik;
+import pojos.Dokter;
 
 /**
  *
  * @author danielbram
  */
-public class testklinik {
+public class testdoktor {
     public static void main(String[] args) {
-        KlinikHelper test = new KlinikHelper();
-        List<Klinik> list = test.getAllKlinik();
+        DokterHelper test = new DokterHelper();
+        List<Dokter> list = test.getAllPasien();
         Gson gson = new Gson();
         String json = gson.toJson(list);
         System.out.println(json);
