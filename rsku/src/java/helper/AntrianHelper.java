@@ -11,33 +11,31 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import pojos.Antrian;
-import pojos.Dokter;
 import util.RskuHibernateUtil;
 
 /**
  *
  * @author danielbram
  */
-public class DokterHelper {
-    public DokterHelper(){
+public class AntrianHelper {
+      public AntrianHelper(){
         
     }
-    public List<Dokter> getAllPasien(){
-        List<Dokter> result = null;
+    public List<Antrian> getAllAntrian(){
+        List<Antrian> result = null;
         Session session = RskuHibernateUtil.getSessionFactory().openSession();
-        String query = "from Dokter d";
+        String query = "from Antrian d";
         Query q = session.createQuery(query);
         result = q.list();
         session.close();
         return result;
     }
-    public void addNewDokter(String nama, String spesialis){
+    public void addNewAntrian(Date tanggal, String noRm, String nama, String alamat, String namaKlinik){
         Session session = RskuHibernateUtil.getSessionFactory().openSession();
-        Transaction transaction = session.beginTransaction();                
-        Dokter dokter = new Dokter(nama, spesialis);
-        session.save(dokter);
+        Transaction transaction = session.beginTransaction();        
+        Antrian antrian = new Antrian(tanggal, noRm, nama, alamat, namaKlinik);
+        session.save(antrian);
         transaction.commit();
         session.close();
     }
-    
 }
