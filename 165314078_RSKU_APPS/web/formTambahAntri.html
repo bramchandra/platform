@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>RUMAH SAKIT HARMONI - ANTRIAN</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <style>
+            /* Set height of the grid so .sidenav can be 100% (adjust if needed) */
+            .row.content {height: 1500px}
+
+            /* Set gray background color and 100% height */
+            .sidenav {
+                background-color: #f1f1f1;
+                height: 100%;
+            }
+
+            /* Set black background color, white text and some padding */
+            footer {
+                background-color: #555;
+                color: white;
+                padding: 15px;
+            }
+
+            /* On small screens, set height to 'auto' for sidenav and grid */
+            @media screen and (max-width: 767px) {
+                .sidenav {
+                    height: auto;
+                    padding: 15px;
+                }
+                .row.content {height: auto;} 
+            }
+        </style>
+    </head>
+    <body>
+
+        <div class="container-fluid">
+            <div class="row content">
+                <div class="col-sm-3 sidenav">
+                    <h4 style="text-align: center">RUMAH SAKIT HARMONI</h4>
+                    <ul class="nav nav-pills nav-stacked">
+                        <li ><a href="index.html">Home</a></li>
+                        <li ><a href="formTambahDokter.html">Pendaftaran</a></li>
+                        <li><a href="formTambahKlinik.html">Klinik</a></li>
+                        <li><a href="formTambahPasien.html">Pasien</a></li>
+                        <li class="active"><a href="formTambahAntri.html">Antrian</a></li>
+                    </ul><br>
+
+                    <br>
+                    <img src="logo.jpg" class="img-circle"  height="300" width="300" style="padding: 10px">
+                </div>
+
+                <div class="col-sm-9">
+                    <h4><marquee>SELAMAT DATANG DI RUMAH SAKIT HARMONI</marquee></h4>
+                    <hr>
+                    <h1>Form Tambah Antri Klinik</h1>
+                    <form action="" id="registerForm" onsubmit="return make_json(this)" method="POST">
+                        <div class="col-sm-3">
+                            Tanggal: 
+                            <input id="tanggal" type="date" required>
+                        </div>
+                        <br>                        
+                        <br>
+                        <div class="col-sm-3">
+                            Nomor Ruangan:
+                            <input id="noRm" type="text" class="form-control" required>
+                        </div>
+                        <br>
+                        <br>
+                        <br>
+                        <div class="col-sm-3">
+                            Nama : 
+                            <input id="nama" type="text" class="form-control" required>
+                        </div>
+                        <br>
+                        <br>
+                        <br>
+                        <div class="col-sm-3">
+                            Alamat: 
+                            <input id="alamat" type="text" class="form-control" required>
+                        </div>
+                        <br>
+                        <br>
+                        <br>
+                        <div class="col-sm-3">
+                            Nama Klinik: 
+                            <input id="namaKlinik" type="text" class="form-control" required>
+                        </div>
+                        
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <div class="col-sm-3">
+                            <input type="submit" value="Submit">
+                        </div>
+                    </form> 
+                    <p id="output"></p>
+                    <script>
+                        function make_json(form) {
+                            var json = {
+                                "tanggal": form.tanggal.value,
+                                "noRekamMedis": form.noRm.value,
+                                "nama": form.nama.value,
+                                "alamat": form.alamat.value,
+                                "namaKlinik": form.namaKlinik.value
+                            };
+                            var html = JSON.stringify(json, 0, 100);
+
+                            var Url = "http://202.94.83.190:8080/rsku/webresources/klinik/tambahKlinik";
+                            var xhr = new XMLHttpRequest();
+                            xhr.open('POST', Url, false);
+                            xhr.setRequestHeader("Content-type", "application/json");
+                            xhr.send(html);
+
+                            document.getElementById("output").innerHTML = html;
+                            return false;
+                        }
+                        ;
+                    </script>
+                    <script>
+                        function loadDoc() {
+
+                            var xmlhttp = new XMLHttpRequest();
+                            var url = "http://202.94.83.190:8080/rsku/webresources/klinik/cariPasien";
+
+                            xmlhttp.onreadystatechange = function () {
+                                if (this.readyState == 4 && this.status == 200) {
+                                    myFunction(this.responseText);
+                                }
+                            }
+                            xmlhttp.open("GET", url, true);
+                            xmlhttp.send();
+
+                            function myFunction(response) {
+                                var arr = JSON.parse(response);
+                                var i;
+                                var out = "<table><tr><th>ID Klinik</th><th>NAMA</th></tr>";
+
+                                for (i = 0; i < arr.length; i++) {
+                                    out += "<tr><td>" +
+                                            arr[i].idKlinik +
+                                            "</td><td>" +
+                                            arr[i].nama +
+                                            "</td><td>";
+                                }
+                                out += "</table>";
+                                document.getElementById("output").innerHTML = out;
+                            }
+                        }
+                    </script>
+
+
+                </div>
+            </div>
+        </div>
+
+        <footer class="container-fluid">
+            <p>Footer Text</p>
+        </footer>
+
+    </body>
+</html>
