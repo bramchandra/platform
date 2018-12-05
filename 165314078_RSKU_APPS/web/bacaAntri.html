@@ -8,9 +8,22 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <style>
-            /* Set height of the grid so .sidenav can be 100% (adjust if needed) */
-            table, th, td {
-                border: 1px solid black;
+            /* Set height of the grid so .sidenav 
+            can be 100% (adjust if needed) */
+            table {
+                font-family: arial, sans-serif;
+                border-collapse: collapse;
+                width: 100%;
+            }
+
+            td, th {
+                border: 1px solid #dddddd;
+                text-align: left;
+                padding: 8px;
+            }
+
+            tr:nth-child(even) {
+                background-color: #dddddd;
             }
             .row.content {height: 1500px}
 
@@ -69,7 +82,7 @@
                         function loadDoc() {
 
                             var xmlhttp = new XMLHttpRequest();
-                            var url = "http://202.94.83.190:8080/rsku/webresources/klinik/bacaKlinik";
+                            var url = "http://202.94.83.190:8080/165314078_RSKU_WEBSERVICE/webresources/antrian";
 
                             xmlhttp.onreadystatechange = function () {
                                 if (this.readyState == 4 && this.status == 200) {
@@ -82,10 +95,12 @@
                             function myFunction(response) {
                                 var arr = JSON.parse(response);
                                 var i;
-                                var out = "<table><tr><th>Tanggal</th><th>Rekam Medis</th><th>Nama</th><th>Alamat</th><th>Nama Klinik</th></tr>";
+                                var out = "<table><tr><th>ID</th><th>Tanggal</th><th>Rekam Medis</th><th>Nama</th><th>Alamat</th><th>Nama Klinik</th></tr>";
 
                                 for (i = 0; i < arr.length; i++) {
                                     out += "<tr><td>" +
+                                            arr[i].id +
+                                            "</td><td>" +
                                             arr[i].tanggal +
                                             "</td><td>" +
                                             arr[i].noRm +

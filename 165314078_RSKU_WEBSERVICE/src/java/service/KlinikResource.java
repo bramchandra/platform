@@ -65,8 +65,7 @@ public class KlinikResource {
     @Path("addKlinik")
     @Consumes(MediaType.APPLICATION_JSON)
     public Response addNewKlinik(String data){
-        Gson gson = new Gson();
-        Antrian antrian = gson.fromJson(data, Antrian.class);            
+        Gson gson = new Gson();        
         Klinik klinik = gson.fromJson(data, Klinik.class);        
         KlinikHelper helper = new KlinikHelper();
         helper.addNewKlinik(klinik.getIdKlinik(),

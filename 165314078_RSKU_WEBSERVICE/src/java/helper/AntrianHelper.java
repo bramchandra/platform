@@ -5,6 +5,7 @@
  */
 package helper;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import org.hibernate.Query;
@@ -15,6 +16,7 @@ import util.RskuHibernateUtil;
 
 /**
  *
+ * 
  * @author danielbram
  */
 public class AntrianHelper {
@@ -33,6 +35,9 @@ public class AntrianHelper {
     public void addNewAntrian(Date tanggal, String noRm, String nama, String alamat, String namaKlinik){
         Session session = RskuHibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();        
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        String formattedDate = formatter.format(tanggal);
+        System.out.println("");
         Antrian antrian = new Antrian(tanggal, noRm, nama, alamat, namaKlinik);
         session.save(antrian);
         transaction.commit();
