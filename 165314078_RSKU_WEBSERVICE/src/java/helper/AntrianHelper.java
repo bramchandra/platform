@@ -34,10 +34,7 @@ public class AntrianHelper {
     }
     public void addNewAntrian(Date tanggal, String noRm, String nama, String alamat, String namaKlinik){
         Session session = RskuHibernateUtil.getSessionFactory().openSession();
-        Transaction transaction = session.beginTransaction();        
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-        String formattedDate = formatter.format(tanggal);
-        System.out.println("");
+        Transaction transaction = session.beginTransaction();                
         Antrian antrian = new Antrian(tanggal, noRm, nama, alamat, namaKlinik);
         session.save(antrian);
         transaction.commit();

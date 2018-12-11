@@ -63,7 +63,7 @@ public class AntrianResource {
     @POST
     @Path("addAntrian")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response addNewPasien(String data){
+    public Response addNewAntrian(String data){
         Gson gson = new Gson();
         Antrian antrian = gson.fromJson(data, Antrian.class);            
         AntrianHelper helper = new AntrianHelper();

@@ -34,22 +34,29 @@
             }
         </style>
     </head>
-    <body>
-
+    <body onload="checkCookieBeforeLoggedIn()">
+        <div>
+            <img src="img/BannerWeb.jpg" alt="Rumah Sakit Panti Waluyo Surakarta" width="100%">
+        </div>
         <div class="container-fluid">
             <div class="row content">
                 <div class="col-sm-3 sidenav">
-                    <h4 style="text-align: center">RUMAH SAKIT HARMONI</h4>
+                    <h4 id="login" style="text-align: center"></h4>
                     <ul class="nav nav-pills nav-stacked">
                         <li ><a href="index.html">Home</a></li>
-                        <li ><a href="formTambahDokter.html">Pendaftaran</a></li>
-                        <li><a href="formTambahKlinik.html">Klinik</a></li>
-                        <li><a href="formTambahPasien.html">Pasien</a></li>
-                        <li class="active"><a href="formTambahAntri.html">Antrian</a></li>
+                        <li ><a href="bacaklinik.html">Klinik</a></li>
+                        <li><a href="bacaDoktor.html">Dokter</a></li>
+                        <li><a href="bacaAntri.html">Antrian</a></li>
+                        <li><a href="bacaPasien.html">Pasien</a></li>
+                        <li><a  href="formTambahKlinik.html">Tambah Klinik</a></li>
+                        <li><a href="formTambahDokter.html">Tambah Dokter</a></li>
+                        <li class="active" ><a href="formTambahAntri.html">Tambah Antrian</a></li>
+                        <li><a href="formTambahPasien.html">Tambah Pasien</a></li>
+                        <li><a onclick="logout()">LogOut</a></li>
                     </ul><br>
 
                     <br>
-                    <img src="logo.jpg" class="img-circle"  height="300" width="300" style="padding: 10px">
+                    <img src="img/logo.jpg" class="img-circle"  height="300" width="300" style="padding: 10px">
                 </div>
 
                 <div class="col-sm-9">
@@ -98,24 +105,26 @@
                         </div>
                     </form> 
                     <p id="output"></p>
+                    <script src="js/Script.js"></script>
                     <script>
+                        
                         function make_json(form) {
                             var json = {
                                 "tanggal": form.tanggal.value,
-                                "noRekamMedis": form.noRm.value,
+                                "noRm": form.noRm.value,
                                 "nama": form.nama.value,
                                 "alamat": form.alamat.value,
                                 "namaKlinik": form.namaKlinik.value
                             };
                             var html = JSON.stringify(json, 0, 100);
 //
-//                            var Url = "http://202.94.83.190:8080/165314078_RSKU_WEBSERVICE/webresources/antrian/addAntrian";
-//                            var xhr = new XMLHttpRequest();
-//                            xhr.open('POST', Url, false);
-//                            xhr.setRequestHeader("Content-type", "application/json");
-//                            xhr.send(html);
+                            var Url = "http://202.94.83.190:8080/165314078_RSKU_WEBSERVICE/webresources/antrian/addAntrian";
+                            var xhr = new XMLHttpRequest();
+                            xhr.open('POST', Url, false);
+                            xhr.setRequestHeader("Content-type", "application/json");
+                            xhr.send(html);
 
-                            document.getElementById("output").innerHTML = html;
+                            document.getElementById("output").innerHTML = html
                             return false;
                         }
                         ;

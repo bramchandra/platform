@@ -70,7 +70,7 @@
 
         <h2>Login Form</h2>
         <div class="imgcontainer">
-            <img src="logo.jpg" alt="Avatar">
+            <img src="img/login.jpg" alt="Avatar">
         </div>
         <div class="container">
             <label for="uname"><b>Username</b></label>
@@ -92,14 +92,15 @@
     function loadDoc() {
         var username = uname.value;
         var password = pass.value;
-//        var url = 'http://202.94.83.190:8080/PemilihanOnlineKPU2k18/webresources/akun/login?email=' + username + '&password=' + password;
+
         var url = 'http://202.94.83.190:8080/165314078_RSKU_WEBSERVICE/webresources/user?username=' + username + '&password=' + password;
 
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
                 var user = JSON.parse(this.responseText);
-                if (user !== null) {
+               if (user !== null) {
+                    document.cookie = "username="+user.email; 
                     alert("Selamat Telah Berhasil Login")
                     window.open("index.html","_self");
                 } else {

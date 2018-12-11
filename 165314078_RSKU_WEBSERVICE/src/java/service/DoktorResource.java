@@ -62,7 +62,7 @@ public class DoktorResource {
     @POST
     @Path("addDokter")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response addNewPasien(String data){
+    public Response addNewDokter(String data){
         Gson gson = new Gson();
         Dokter dokter = gson.fromJson(data, Dokter.class);            
         DokterHelper helper = new DokterHelper();

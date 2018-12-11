@@ -50,19 +50,29 @@
             }
         </style>
     </head>
-    <body>
-
+    <body onload="checkCookie()">
+        <div>
+            <img src="img/BannerWeb.jpg" alt="Rumah Sakit Panti Waluyo Surakarta" width="100%">
+        </div>
         <div class="container-fluid">
             <div class="row content">
                 <div class="col-sm-3 sidenav">
-                    <h4 style="text-align: center">RUMAH SAKIT HARMONI</h4>
-                    <ul class="nav nav-pills nav-stacked">
-
-                        <li class="active"><a href="#">Baca Antrian</a></li>
+                    <h4 id="login" style="text-align: center"></h4>
+                    <ul class="nav nav-pills nav-stacked">                                                                        
+                        <li><a href="index.html">Home</a></li>
+                        <li ><a href="bacaklinik.html">Klinik</a></li>
+                        <li><a href="bacaDoktor.html">Dokter</a></li>
+                        <li class="active"><a href="bacaAntri.html">Antrian</a></li>
+                        <li><a href="bacaPasien.html">Pasien</a></li>
+                        <li><a href="formTambahKlinik.html">Tambah Klinik</a></li>
+                        <li><a href="formTambahDokter.html">Tambah Dokter</a></li>
+                        <li><a href="formTambahAntri.html">Tambah Antrian</a></li>
+                        <li><a href="formTambahPasien.html">Tambah Pasien</a></li>
+                        <li id="logout"></li>
                     </ul><br>
 
                     <br>
-                    <img src="logo.jpg" class="img-circle"  height="300" width="300" style="padding: 10px">
+                    <img src="img/logo.jpg" class="img-circle"  height="300" width="300" style="padding: 10px">
                 </div>
 
                 <div class="col-sm-9">
@@ -72,13 +82,13 @@
                     <button type="button" onclick="loadDoc()" id="btn">KLIK</button>
 
                     <br>
-                    <br>
+
                     <br>
                     <br>
                     <p id="output"></p>
-                    <p id="idKlinik"></p>
-                    <p id="nama"></p>
+                    <script src="js/Script.js"></script>
                     <script>
+         
                         function loadDoc() {
 
                             var xmlhttp = new XMLHttpRequest();
@@ -124,7 +134,7 @@
         </div>
 
         <footer class="container-fluid">
-            <p>Footer Text</p>
+            <p>Copyright © 2018 RS Harmoni Yogyakarta. All Rights Reserved.</p>
         </footer>
 
     </body>
